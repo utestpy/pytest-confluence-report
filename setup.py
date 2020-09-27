@@ -54,5 +54,5 @@ if __name__ == "__main__":
             "Operating System :: OS Independent",
         ),
         python_requires=">=3.6",
-        entry_points={"console_scripts": ("tool = tool.__main__:main",)},
+        entry_points={"pytest11": ("creport = report.confluence",)},
     )

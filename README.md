@@ -14,7 +14,7 @@
 
 # Pytest confluence report
 
-> Pytest plugin to convert testing results into confluence page report to proceed with tests analysis.
+> Pytest plugin to convert test results into confluence page report to proceed with tests analysis.
 > 
 > **Note:** the project is under construction.
 
@@ -42,21 +42,19 @@ pip install pytest-confluence-report
 ### Source code
 
 ```bash
-git clone path/to/github/repo.git
+git clone git@github.com:vyahello/pytest-confluence-report.git
 pip install -e .
-report
 ```
 
 Or using direct release:
 ```bash
-pip install git+https://path/to/github/repo@0.0.1
-report
+pip install git+https://github.com/vyahello/pytest-confluence-report@0.0.1
 ```
 
 ### Local debug
 
 ```bash
-git clone path/to/github/repo.git
+git clone git@github.com:vyahello/pytest-confluence-report.git
 python -m report
 ```
 **[⬆ back to top](#pytest-confluence-report)**

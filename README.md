@@ -42,21 +42,19 @@ pip install pytest-confluence-report
 ### Source code
 
 ```bash
-git clone path/to/github/repo.git
+git clone git@github.com:vyahello/pytest-confluence-report.git
 pip install -e .
-report
 ```
 
 Or using direct release:
 ```bash
-pip install git+https://path/to/github/repo@0.0.1
-report
+pip install git+https://github.com/vyahello/pytest-confluence-report@0.0.1
 ```
 
 ### Local debug
 
 ```bash
-git clone path/to/github/repo.git
+git clone git@github.com:vyahello/pytest-confluence-report.git
 python -m report
 ```
 **[⬆ back to top](#pytest-confluence-report)**

@@ -1,4 +1,4 @@
-![Screenshot](icon.png)
+![Screenshot](logo.png)
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![Build Status](https://travis-ci.org/vyahello/report.svg?branch=master)](https://travis-ci.org/vyahello/report)
@@ -15,6 +15,8 @@
 # Pytest confluence report
 
 > Pytest plugin to convert testing results into confluence page report to proceed with tests analysis.
+> 
+> **Note:** the project is under construction.
 
 ## Tools
 
@@ -35,7 +37,7 @@
 ```bash
 pip install pytest-confluence-report
 ✨ 🍰 ✨
-```****
+```
 
 ### Source code
 

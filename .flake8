@@ -1,0 +1,11 @@
+[flake8]
+min_python_version = 3.6.0
+max_complexity = 10
+max-line-length = 100
+inline-quotes = double
+max-annotations-complexity = 4
+max-function-length = 30
+statistics = True
+count = True
+eradicate-aggressive = True
+ignore = I100, I201, ANN101, ANN102

@@ -29,6 +29,7 @@
   - [pylint](https://www.pylint.org/)
   - [flake8](http://flake8.pycqa.org/en/latest/)
   - [pydocstyle](https://github.com/PyCQA/pydocstyle)
+  - [interrogate](https://interrogate.readthedocs.io/en/latest/)
 
 ## Usage
 

@@ -1,9 +1,7 @@
-# flake8: noqa
 import pytest
-from tests.markers import unit
 
-pytestmark = unit
+pytestmark = pytest.mark.unit
 
 
-def test_me() -> None:
+def test_mock() -> None:
     assert True

@@ -23,6 +23,7 @@ venv
 
 # pytest
 assets/
+pytest.xml
 
 # pypi assets
 dist/

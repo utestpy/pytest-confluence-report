@@ -1,4 +1,9 @@
-# flake8: noqa
-from _pytest.config.argparsing import Parser
-from _pytest.fixtures import SubRequest
-import pytest
+import sys
+
+
+def pytest_report_header() -> str:
+    """Adds header to pytest runner."""
+    return (
+        f'Running on {sys.platform} platform'
+        f": {'{}.{}.{}'.format(*sys.version_info[:3])} python versions"
+    )

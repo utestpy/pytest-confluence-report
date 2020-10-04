@@ -1,8 +1,8 @@
-![Screenshot](logo.png)
+![Screenshot](media/logo.png)
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-[![Build Status](https://travis-ci.org/vyahello/report.svg?branch=master)](https://travis-ci.org/vyahello/report)
-[![Coverage Status](https://coveralls.io/repos/github/vyahello/report/badge.svg?branch=master)](https://coveralls.io/github/vyahello/report?branch=master)
+[![Build Status](https://travis-ci.org/vyahello/pytest-confluence-report.svg?branch=master)](https://travis-ci.org/vyahello/pytest-confluence-report)
+[![Coverage Status](https://coveralls.io/repos/github/vyahello/pytest-confluence-report/badge.svg?branch=master)](https://coveralls.io/github/vyahello/pytest-confluence-report?branch=master)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Checked with pylint](https://img.shields.io/badge/pylint-checked-blue)](https://www.pylint.org)
 [![Checked with flake8](https://img.shields.io/badge/flake8-checked-blue)](http://flake8.pycqa.org/)
@@ -20,7 +20,7 @@
 
 ## Tools
 
-- python 3.6 | 3.7 | 3.8
+- python 3.6, 3.7, 3.8
 - [travis](https://travis-ci.org/) CI
 - code analysis
   - [pytest](https://pypi.org/project/pytest/)

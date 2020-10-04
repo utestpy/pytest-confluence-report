@@ -1,4 +1,5 @@
 """Package contains a set of interfaces to operate `report` application."""
+
 __author__: str = 'Volodymyr Yahello'
 __email__: str = 'vyahello@gmail.com'
 __license__: str = 'MIT'

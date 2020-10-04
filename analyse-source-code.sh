@@ -82,7 +82,7 @@ DOC
 }
 
 
-is-passed() {
+check-assessment() {
 :<<DOC
     Checks if code assessment is passed
 DOC
@@ -108,9 +108,9 @@ DOC
       check-docstrings && \
       check-pymanifest && \
       check-unittests && \
-      is-passed
+      check-assessment
     )
-    return 0
 }
+
 
 main

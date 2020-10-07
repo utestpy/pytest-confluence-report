@@ -34,11 +34,17 @@
 
 ## Usage
 
-### Quick start
+### Installation
 
 ```bash
 pip install pytest-confluence-report
 ✨ 🍰 ✨
+```
+
+### Quick start
+
+```bash
+pytest --confluence
 ```
 
 ### Source code
@@ -59,6 +65,7 @@ pip install git+https://github.com/vyahello/pytest-confluence-report@0.0.1
 git clone git@github.com:vyahello/pytest-confluence-report.git
 python -m report
 ```
+
 **[⬆ back to top](#pytest-confluence-report)**
 
 ## Development notes

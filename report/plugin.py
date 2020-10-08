@@ -5,7 +5,8 @@ from _pytest.config import Config
 from _pytest.config.argparsing import OptionGroup, Parser
 
 logging.basicConfig(
-    format='%(asctime)s %(levelname)s %(message)s', level=logging.DEBUG,
+    format='%(asctime)s %(levelname)s %(message)s',
+    level=logging.DEBUG,
 )
 _logger: logging.Logger = logging.getLogger(__name__)
 

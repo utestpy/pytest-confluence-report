@@ -1,10 +1,10 @@
 attrs==20.2.0
-black==19.10b0
+black==20.8b1
 check-manifest==0.44
 coverage==5.3
 coveralls==2.1.2
-flake8==3.8.3
-flake8-annotations==2.4.0
+flake8==3.8.4
+flake8-annotations==2.4.1
 flake8-annotations-complexity==0.0.5
 flake8-builtins==1.5.3
 flake8-comprehensions==3.2.3
@@ -26,3 +26,4 @@ pytest-clarity==0.3.0a0
 pytest-cov==2.10.1
 pytest-mock==3.3.1
 pytest-sugar==0.9.4
+uyaml==0.0.6

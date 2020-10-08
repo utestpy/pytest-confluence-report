@@ -1,6 +1,9 @@
 """Package setup entrypoint."""
 from typing import IO, Sequence
-from setuptools import find_packages as __find_packages, setup as __compose_package
+from setuptools import (
+    find_packages as __find_packages,
+    setup as __compose_package,
+)
 from report import (
     __author__ as __author,
     __doc__ as __full_doc,
@@ -43,7 +46,9 @@ if __name__ == "__main__":
         long_description=__readme(),
         long_description_content_type="text/markdown",
         url=f"https://github.com/vyahello/{__name}",
-        packages=__find_packages(exclude=("*.tests", "*.tests.*", "tests.*", "tests")),
+        packages=__find_packages(
+            exclude=("*.tests", "*.tests.*", "tests.*", "tests")
+        ),
         include_package_data=True,
         install_requires=__requirements(),
         classifiers=(

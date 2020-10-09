@@ -1,7 +1,7 @@
 """Module provides a set of API to manipulate user topology settings."""
-from abc import ABC, abstractmethod
 from typing import Any, Dict, Sequence
 from uyaml import Yaml
+from punish import AbstractStyle, abstractstyle
 
 
 class _Credentials:
@@ -103,11 +103,11 @@ class _Page:
         )
 
 
-class Settings(ABC):
+class Settings(AbstractStyle):
     """Represents an abstract interface for settings topology."""
 
-    @property
-    @abstractmethod
+    @property  # type: ignore
+    @abstractstyle
     def url(self) -> str:
         """Return an URL.
 
@@ -115,8 +115,8 @@ class Settings(ABC):
         """
         pass
 
-    @property
-    @abstractmethod
+    @property  # type: ignore
+    @abstractstyle
     def page(self) -> _Page:
         """Return an URL.
 
@@ -124,8 +124,8 @@ class Settings(ABC):
         """
         pass
 
-    @property
-    @abstractmethod
+    @property  # type: ignore
+    @abstractstyle
     def credentials(self) -> _Credentials:
         """Return credentials.
 
@@ -182,7 +182,7 @@ class ConfluenceSettings(Settings):
 
     def __init__(self, settings: Yaml) -> None:
         self._confluence: Settings = _UnifiedSettings(
-            settings.section(name="confluence")
+            settings.section(name='confluence')
         )
 
     @property

@@ -36,7 +36,8 @@ def __first_line(string: str, delimiter: str = "\n") -> str:
     return string.split(delimiter)[0]
 
 
-if __name__ == "__main__":
+def __main() -> None:
+    """Setup package entrypoint."""
     __compose_package(
         name=__name,
         version=__version,
@@ -61,3 +62,7 @@ if __name__ == "__main__":
         python_requires=">=3.6",
         entry_points={"pytest11": ("creport = report.confluence",)},
     )
+
+
+if __name__ == "__main__":
+    __main()

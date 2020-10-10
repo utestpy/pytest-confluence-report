@@ -4,7 +4,7 @@ from uyaml import Yaml
 from punish import AbstractStyle, abstractstyle
 
 
-class _Credentials:
+class _Credentials(AbstractStyle):
     """The class represents credentials as an object."""
 
     __slots__: Sequence[str] = ('_username', '_api_key')
@@ -55,7 +55,7 @@ class _Credentials:
         return f'[{self.__class__.__name__}: user = {self._username}]'
 
 
-class _Page:
+class _Page(AbstractStyle):
     """Represents an abstract interface for confluence page settings."""
 
     __slots__: Sequence[str] = ('_parent', '_target')

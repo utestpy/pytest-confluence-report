@@ -44,7 +44,7 @@ pip install pytest-confluence-report
 ### Quick start
 
 ```bash
-pytest --confluence
+pytest --confluence/-cr
 ```
 
 ### Source code
@@ -63,7 +63,7 @@ pip install git+https://github.com/vyahello/pytest-confluence-report@0.0.1
 
 ```bash
 git clone git@github.com:vyahello/pytest-confluence-report.git
-python -m report
+python -m report --settings <file.yml> --xml-path <pytest.xml>
 ```
 
 **[⬆ back to top](#pytest-confluence-report)**

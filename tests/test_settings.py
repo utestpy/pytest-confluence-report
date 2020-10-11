@@ -1,6 +1,4 @@
 import pytest
-from uyaml import Yaml
-from uyaml.loader import YamlType
 from report.settings import (
     ConfluenceSettings,
     Settings,
@@ -8,21 +6,7 @@ from report.settings import (
     _Page,
     _UnifiedSettings,
 )
-
-_SECTION = {
-    'url': '',
-    'page': {'parent': 'Home', 'target': 'Salary'},
-    'credentials': {'username': 'Foo', 'api-key': 'Bar'},
-}
-_CONFLUENCE_PART = {'confluence': _SECTION}
-
-
-class FakeYaml(Yaml):
-    def content(self) -> YamlType:
-        return {}
-
-    def section(self, name: str) -> YamlType:
-        return _CONFLUENCE_PART[name]
+from tests.fake import FakeYaml, SECTION
 
 
 @pytest.fixture()
@@ -37,7 +21,7 @@ def page() -> _Page:
 
 @pytest.fixture()
 def unified_settings() -> Settings:
-    return _UnifiedSettings(_SECTION)
+    return _UnifiedSettings(SECTION)
 
 
 @pytest.fixture()

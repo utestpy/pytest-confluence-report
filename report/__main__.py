@@ -1,53 +1,35 @@
 """Represents executable entrypoint for `report` application."""
 import textwrap
-import click
+from typer import Option, run
 from uyaml import YamlFromPath
 from report import confluence
 from report.settings import ConfluenceSettings
 
-DEFAULT_PATH: str = 'settings.yml'
+_DEFAULT_PATH: str = 'settings.yml'
 
 
-@click.command(
-    help=textwrap.dedent(
-        '''
-    Tool allows to convert pytest results into Confluence page.
-    '''
+def __main(
+    settings_path: str = Option(
+        default=_DEFAULT_PATH,
+        help=textwrap.dedent(
+            f'Confluence settings file (e.g ``{_DEFAULT_PATH}``)'
+        ),
     ),
-    short_help='Upload pytest results into Confluence.',
-)
-@click.option(
-    '--settings-path',
-    '-p',
-    type=str,
-    default=DEFAULT_PATH,
-    help=textwrap.dedent(
-        '''
-    Confluence settings file (e.g ``settings.yml``)
-    '''
+    xml_path: str = Option(
+        default='',
+        help=textwrap.dedent('Pytest XML artifact file e.g ``pytest.xml``.'),
     ),
-    required=True,
-)
-@click.option(
-    '--body',
-    '-b',
-    type=str,
-    default='',
-    help=textwrap.dedent(
-        '''
-    Confluence page body to fill.
-    '''
-    ),
-    required=True,
-)
-def main(settings_path: str, body: str) -> None:
-    """Launch command to upload test results into Confluence."""
+) -> None:
+    """Tool allows to convert pytest results into Confluence page."""
 
     with confluence.Client(
         settings=ConfluenceSettings(YamlFromPath(settings_path))
     ) as client:
-        client.build_page(body)
+        # TODO  # pylint: disable=fixme
+        # xml_from_pytest = XmlFile(xml_path)
+        # failures = xml_from_pytest.load_failures(html=True)
+        client.build_page(xml_path)
 
 
 if __name__ == "__main__":
-    main()  # pylint: disable=no-value-for-parameter
+    run(__main)

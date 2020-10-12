@@ -45,9 +45,9 @@ def pytest_unconfigure(config: Config) -> None:
     if config.getoption('confluence_upload'):
         _logger.info('Uploading testing results to confluence ...')
         # TODO  # pylint: disable=fixme
-        client = confluence.Client(
+        with confluence.Client(
             settings=ConfluenceSettings(
                 YamlFromPath(config.getoption('confluence_settings'))
             )
-        )
-        client.build_page(body=str())
+        ) as client:
+            client.build_page(body=str())

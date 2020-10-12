@@ -28,10 +28,12 @@ class Client:
 
     def __init__(self, settings: ConfluenceSettings) -> None:
         self._settings: ConfluenceSettings = settings
-        self._client: Confluence = _client_from_settings(settings)
+        self._client: Optional[Confluence] = None
 
     def __enter__(self) -> "Client":
         """Returns Confluence Client."""
+        if not self._client:
+            self._client = _client_from_settings(self._settings)
         return self
 
     def _page_link(self, from_response: Dict[str, Dict[str, str]]) -> str:
@@ -51,7 +53,7 @@ class Client:
             body: <str> a body
         """
         _logger.info('Creating "%s" page', self._settings.page.target)
-        response = self._client.create_page(
+        response = self._client.create_page(  # type: ignore
             self._settings.page.parent, self._settings.page.target, body
         )
         _logger.info(
@@ -67,5 +69,4 @@ class Client:
         traceback: Optional[TracebackType],  # noqa: U100
     ) -> None:
         """Clears Client."""
-        del self._client
-        del self._settings
+        self._client = None

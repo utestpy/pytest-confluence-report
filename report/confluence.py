@@ -42,7 +42,7 @@ class Client:
 
         Returns: a link
         """
-        return f'{self._settings.url}/wiki{from_response["_links"]["webui"]}'
+        return f'{self._settings.url}wiki{from_response["_links"]["webui"]}'
 
     def build_page(self, body: str) -> None:
         """Create page with given body.
@@ -55,7 +55,7 @@ class Client:
             self._settings.page.parent, self._settings.page.target, body
         )
         _logger.info(
-            '"%s" page is created. ' 'Please follow "%s" link.',
+            '"%s" page is created. Please follow "%s" link.',
             self._settings.page.target,
             self._page_link(response),
         )

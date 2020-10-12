@@ -1,4 +1,4 @@
-"""Package contains a set of interfaces to operate `report` application."""
+"""Package stands for pytest plugin to upload results into Confluence page."""
 import logging
 
 __author__: str = 'Volodymyr Yahello'
@@ -12,3 +12,4 @@ logging.basicConfig(
     format='%(asctime)s %(levelname)s %(message)s',
     level=logging.INFO,
 )
+SETTINGS_PATH: str = 'settings.yml'

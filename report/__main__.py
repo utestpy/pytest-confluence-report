@@ -2,17 +2,15 @@
 import textwrap
 from typer import Option, run
 from uyaml import YamlFromPath
-from report import confluence
+from report import SETTINGS_PATH, confluence
 from report.settings import ConfluenceSettings
-
-_DEFAULT_PATH: str = 'settings.yml'
 
 
 def __main(
     settings_path: str = Option(
-        default=_DEFAULT_PATH,
+        default=SETTINGS_PATH,
         help=textwrap.dedent(
-            f'Confluence settings file (e.g ``{_DEFAULT_PATH}``)'
+            f'Confluence settings file (e.g ``{SETTINGS_PATH}``)'
         ),
     ),
     xml_path: str = Option(

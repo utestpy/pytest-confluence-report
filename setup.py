@@ -60,7 +60,7 @@ def __main() -> None:
             "Operating System :: OS Independent",
         ),
         python_requires=">=3.6",
-        entry_points={"pytest11": ("creport = report.confluence",)},
+        entry_points={"pytest11": ("creport = report.plugin",)},
     )
 
 

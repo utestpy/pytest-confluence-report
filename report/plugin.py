@@ -3,7 +3,9 @@ import logging
 import sys
 from _pytest.config import Config
 from _pytest.config.argparsing import OptionGroup, Parser
-
+from uyaml import YamlFromPath
+from report import SETTINGS_PATH, confluence
+from report.settings import ConfluenceSettings
 
 _logger: logging.Logger = logging.getLogger(__name__)
 
@@ -14,12 +16,19 @@ def pytest_addoption(parser: Parser) -> None:
     Args:
         parser: Parser for command line arguments and ini-file values
     """
-    group: OptionGroup = parser.getgroup('Confluence report')
+    group: OptionGroup = parser.getgroup(name='Confluence report')
     group.addoption(
         '--confluence-upload',
         '--cu',
         action='store_true',
         help='Convert pytest results into Confluence page',
+    )
+    group.addoption(
+        '--confluence-settings',
+        '--cs',
+        type=str,
+        default=SETTINGS_PATH,
+        help=f'Path to Confluence settings file e.g `{SETTINGS_PATH}`.',
     )
 
 
@@ -36,5 +45,9 @@ def pytest_unconfigure(config: Config) -> None:
     if config.getoption('confluence_upload'):
         _logger.info('Uploading testing results to confluence ...')
         # TODO  # pylint: disable=fixme
-        # confluence = Confluence(load_confluence_config())
-        # confluence.upload()
+        client = confluence.Client(
+            settings=ConfluenceSettings(
+                YamlFromPath(config.getoption('confluence_settings'))
+            )
+        )
+        client.build_page(body=str())

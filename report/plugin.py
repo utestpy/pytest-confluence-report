@@ -4,6 +4,7 @@ import sys
 from _pytest.config import Config
 from _pytest.config.argparsing import OptionGroup, Parser
 
+
 _logger: logging.Logger = logging.getLogger(__name__)
 
 
@@ -15,8 +16,8 @@ def pytest_addoption(parser: Parser) -> None:
     """
     group: OptionGroup = parser.getgroup('Confluence report')
     group.addoption(
-        '--confluence',
-        '--cr',
+        '--confluence-upload',
+        '--cu',
         action='store_true',
         help='Convert pytest results into Confluence page',
     )
@@ -32,7 +33,7 @@ def pytest_report_header() -> str:
 
 def pytest_unconfigure(config: Config) -> None:
     """Pytest hook that launches at the end of test run."""
-    if config.getoption('confluence'):
+    if config.getoption('confluence_upload'):
         _logger.info('Uploading testing results to confluence ...')
         # TODO  # pylint: disable=fixme
         # confluence = Confluence(load_confluence_config())

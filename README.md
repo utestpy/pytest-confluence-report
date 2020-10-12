@@ -44,7 +44,7 @@ pip install pytest-confluence-report
 ### Quick start
 
 ```bash
-pytest --confluence/-cr
+pytest --confluence-upload/-cu
 ```
 
 ### Source code

@@ -57,7 +57,7 @@ DOC
 :<<DOC
   Test pytest upload long flag
 DOC
-  pytest --help | grep "--confluence-upload"
+  pytest --help | grep "confluence-upload"
   [ "$?" -eq 0 ]
 }
 
@@ -66,7 +66,7 @@ DOC
 :<<DOC
   Test pytest upload short flag
 DOC
-  pytest --help | grep "--cu"
+  pytest --help | grep "cu"
   [ "$?" -eq 0 ]
 }
 
@@ -84,7 +84,7 @@ DOC
 :<<DOC
   Test pytest settings long flag
 DOC
-  pytest --help | grep "--confluence-settings"
+  pytest --help | grep "confluence-settings"
   [ "$?" -eq 0 ]
 }
 
@@ -93,6 +93,6 @@ DOC
 :<<DOC
   Test pytest settings short flag
 DOC
-  pytest --help | grep "--cs"
+  pytest --help | grep "cs"
   [ "$?" -eq 0 ]
 }

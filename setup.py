@@ -9,7 +9,7 @@ from report import (
     __doc__ as __full_doc,
     __email__ as __email,
     __license__ as __license,
-    __name__ as __name,
+    __package_name as __name,
     __version__ as __version,
 )
 

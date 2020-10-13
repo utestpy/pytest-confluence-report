@@ -1,7 +1,7 @@
 # please refer to https://docs.python.org/2/distutils/sourcedist.html#commands
 prune .idea
 exclude .coverage .python-version .gitignore
-include .* *.png *.md *.ini *.in *.yml *.toml *.cfg *.gif *.sh *.txt
+include .* *.bats *.png *.md *.ini *.in *.yml *.toml *.cfg *.gif *.sh *.txt
 recursive-include report *.py
 recursive-include tests *.py
 recursive-include media *.png

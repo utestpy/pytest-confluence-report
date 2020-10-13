@@ -6,10 +6,16 @@ python:
 addons:
   apt:
     update: true
+env:
+  - PACKAGE_NAME=pytest-confluence-report PACKAGE_VERSION=0.0.0
+before_install:
+  - sudo add-apt-repository -y ppa:duggan/bats
+  - sudo apt-get -y install bats
 install:
   - pip install pip -U && pip install -r requirements-dev.txt -U
 script:
     - ./analyse-source-code.sh
+    - bats test-package.bats
 after_success:
   - coveralls
 notifications:

@@ -1,4 +1,5 @@
 import pytest
+from uyaml import Yaml
 from report.settings import (
     ConfluenceSettings,
     Settings,
@@ -6,7 +7,7 @@ from report.settings import (
     _Page,
     _UnifiedSettings,
 )
-from tests.fake import FakeYaml, SECTION
+from tests.fake import SECTION
 
 
 @pytest.fixture()
@@ -25,8 +26,8 @@ def unified_settings() -> Settings:
 
 
 @pytest.fixture()
-def settings() -> Settings:
-    return ConfluenceSettings(FakeYaml())
+def settings(fake_yaml: Yaml) -> Settings:
+    return ConfluenceSettings(fake_yaml)
 
 
 def test_credentials_username(credentials: _Credentials) -> None:

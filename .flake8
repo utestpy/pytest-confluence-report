@@ -8,4 +8,4 @@ max-function-length = 30
 statistics = True
 count = True
 eradicate-aggressive = True
-ignore = I100, I201, ANN101, ANN102
+ignore = U100, I100, I201, ANN101, ANN102

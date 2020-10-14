@@ -50,4 +50,4 @@ def pytest_unconfigure(config: Config) -> None:
                 YamlFromPath(config.getoption('confluence_settings'))
             )
         ) as client:
-            client.build_page(body=str())
+            client.build_page(content=str())

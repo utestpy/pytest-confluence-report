@@ -2,7 +2,8 @@
 import textwrap
 from typer import Option, run
 from uyaml import YamlFromPath
-from report import SETTINGS_PATH, confluence
+from report.xml import PytestXml, Xml
+from report import SETTINGS_PATH, XML_PATH, confluence
 from report.settings import ConfluenceSettings
 
 
@@ -10,12 +11,12 @@ def __main(
     settings_path: str = Option(
         default=SETTINGS_PATH,
         help=textwrap.dedent(
-            f'Confluence settings file (e.g ``{SETTINGS_PATH}``)'
+            f'Confluence settings path (e.g ``{SETTINGS_PATH}``)'
         ),
     ),
     xml_path: str = Option(
-        default='',
-        help=textwrap.dedent('Pytest XML artifact file e.g ``pytest.xml``.'),
+        default=XML_PATH,
+        help=textwrap.dedent(f'Pytest XML artifact path e.g ``{XML_PATH}``.'),
     ),
 ) -> None:
     """Tool allows to convert pytest results into Confluence page."""
@@ -23,10 +24,8 @@ def __main(
     with confluence.Client(
         settings=ConfluenceSettings(YamlFromPath(settings_path))
     ) as client:
-        # TODO  # pylint: disable=fixme
-        # xml_from_pytest = XmlFile(xml_path)
-        # failures = xml_from_pytest.load_failures(html=True)
-        client.build_page(xml_path)
+        pytestxml: Xml = PytestXml(path=xml_path)
+        client.build_page(content=pytestxml.statistics)
 
 
 if __name__ == "__main__":

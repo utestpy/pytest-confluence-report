@@ -13,3 +13,4 @@ logging.basicConfig(
     level=logging.INFO,
 )
 SETTINGS_PATH: str = 'settings.yml'
+XML_PATH: str = 'pytest.xml'

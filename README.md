@@ -24,6 +24,7 @@
 ### Production
 
 - python 3.6, 3.7, 3.8
+- [typer](https://typer.tiangolo.com/)
 - [pytest](https://pypi.org/project/pytest/)
 
 ### Development

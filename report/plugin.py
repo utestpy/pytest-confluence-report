@@ -6,7 +6,7 @@ from _pytest.config.argparsing import OptionGroup, Parser
 from uyaml import YamlFromPath
 from report import SETTINGS_PATH, XML_PATH, confluence
 from report.settings import ConfluenceSettings
-from report.xml import PytestXml, Xml
+from report.xml import PytestXml, report_from_xml
 
 _logger: logging.Logger = logging.getLogger(__name__)
 
@@ -17,7 +17,7 @@ def pytest_addoption(parser: Parser) -> None:
     Args:
         parser: Parser for command line arguments and ini-file values
     """
-    group: OptionGroup = parser.getgroup(name='Confluence report')
+    group: OptionGroup = parser.getgroup(name='Confluence report_from')
     group.addoption(
         '--confluence-upload',
         '--cu',
@@ -57,5 +57,8 @@ def pytest_unconfigure(config: Config) -> None:
                 YamlFromPath(config.getoption('confluence_settings'))
             )
         ) as client:
-            pytestxml: Xml = PytestXml(path=config.getoption('pytest_xml_path'))
-            client.build_page(content=pytestxml.statistics)
+            client.build_page(
+                content=report_from_xml(
+                    PytestXml(path=config.getoption('pytest_xml_path'))
+                )
+            )

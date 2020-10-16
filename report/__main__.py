@@ -1,8 +1,8 @@
-"""Represents executable entrypoint for `report` application."""
+"""Represents executable entrypoint for `report_from` application."""
 import textwrap
 from typer import Option, run
 from uyaml import YamlFromPath
-from report.xml import PytestXml, Xml
+from report.xml import PytestXml, report_from_xml
 from report import SETTINGS_PATH, XML_PATH, confluence
 from report.settings import ConfluenceSettings
 
@@ -24,8 +24,7 @@ def __main(
     with confluence.Client(
         settings=ConfluenceSettings(YamlFromPath(settings_path))
     ) as client:
-        pytestxml: Xml = PytestXml(path=xml_path)
-        client.build_page(content=pytestxml.statistics)
+        client.build_page(content=report_from_xml(PytestXml(path=xml_path)))
 
 
 if __name__ == "__main__":

@@ -1,15 +1,15 @@
-"""Module contains API to operate Confluence REST."""
+"""Module contains API to operate Confluence page(s)."""
 import logging
 from abc import ABC, abstractmethod
 from types import TracebackType
 from typing import Optional, Type
 from atlassian import Confluence
-from report.settings import ConfluenceSettings, Settings
+from report.settings import Settings
 
 _logger: logging.Logger = logging.getLogger(__name__)
 
 
-def _client_from_settings(settings: Settings) -> Confluence:
+def client_from_settings(settings: Settings) -> Confluence:
     """Returns Confluence client from settings.
 
     Args:
@@ -25,7 +25,7 @@ def _client_from_settings(settings: Settings) -> Confluence:
 
 
 class Page(ABC):
-    """The class represents abstract interface for page."""
+    """The class represents abstract interface for Confluence Client."""
 
     @property
     @abstractmethod
@@ -33,9 +33,25 @@ class Page(ABC):
         """Returns page link."""
         pass
 
+    @property
+    @abstractmethod
+    def id_(self) -> int:
+        """Returns page id."""
+        pass
+
     @abstractmethod
     def build(self, content: str) -> None:
         """Creates a page."""
+        pass
+
+    @abstractmethod
+    def update(self, content: str) -> None:
+        """Updates confluence client page."""
+        pass
+
+    @abstractmethod
+    def exists(self) -> bool:
+        """Check if page exists page."""
         pass
 
 
@@ -47,23 +63,34 @@ class _EmptyPage(Page):
         """Returns am empty link."""
         return ''
 
+    @property
+    def id_(self) -> int:
+        """Returns am empty id."""
+        return 0
+
     def build(self, content: str) -> None:
         """Creates an empty page."""
         content = ''  # noqa: F841
 
+    def update(self, content: str) -> None:
+        """Updates an empty page."""
+        content = ''  # noqa: F841
 
-class _ConfluencePage(Page):
+    def exists(self) -> bool:
+        """Returns not existing page."""
+        return False
+
+
+class ConfluencePage(Page):
     """The class represents interface for Confluence page."""
 
-    def __init__(
-        self, settings: ConfluenceSettings, client: Confluence
-    ) -> None:
-        self._settings: ConfluenceSettings = settings
+    def __init__(self, settings: Settings, client: Confluence) -> None:
+        self._settings: Settings = settings
         self._client: Confluence = client
 
     @property
     def link(self) -> str:
-        """Returns page link.
+        """Returns confluence client page.
 
         Returns: a link
         """
@@ -72,39 +99,58 @@ class _ConfluencePage(Page):
         )['_links']['webui']
         return f'{self._settings.url}wiki{link}'
 
+    @property
+    def id_(self) -> int:
+        """Returns confluence page id."""
+        return self._client.get_page_id(
+            space=self._settings.page.parent, title=self._settings.page.target
+        )
+
     def build(self, content: str) -> None:
-        """Creates confluence page."""
+        """Creates confluence client page."""
         self._client.create_page(
             space=self._settings.page.parent,
             title=self._settings.page.target,
             body=content,
         )
 
+    def update(self, content: str) -> None:
+        """Updates confluence client page."""
+        self._client.update_page(self.id_, self._settings.page.target, content)
 
-class RestClient:
-    """The class represents interface to work with Confluence REST."""
+    def exists(self) -> bool:
+        """Check if page exists page."""
+        return self._client.page_exists(
+            self._settings.page.parent, self._settings.page.target
+        )
 
-    def __init__(self, settings: ConfluenceSettings) -> None:
-        self._settings: ConfluenceSettings = settings
-        self._client: Optional[Confluence] = None
-        self._page: Page = _EmptyPage()
 
-    def __enter__(self) -> "RestClient":
-        """Returns Confluence Client."""
-        if not self._client:
-            self._client = _client_from_settings(self._settings)
-            if isinstance(self._page, _EmptyPage):
-                self._page = _ConfluencePage(self._settings, self._client)
+class ConfluenceContent:
+    """The class represents interface to work with Confluence page."""
+
+    def __init__(self, page: Page, settings: Settings) -> None:
+        self._page: Page = page
+        self._settings: Settings = settings
+
+    def __enter__(self) -> 'ConfluenceContent':
+        """Returns Confluence content."""
+        if isinstance(self._page, _EmptyPage):
+            self._page = ConfluencePage(
+                self._settings, client_from_settings(self._settings)
+            )
         return self
 
-    def build_page(self, content: str) -> None:
+    def build(self, content: str) -> None:
         """Create page with given body.
 
         Args:
             content: <str> a body
         """
-        _logger.info('Creating "%s" page', self._settings.page.target)
-        self._page.build(content)
+        if self._page.exists():
+            self._page.update(content)
+        else:
+            _logger.info('Creating "%s" page', self._settings.page.target)
+            self._page.build(content)
         _logger.info(
             '"%s" page is created. Please follow "%s" link.',
             self._settings.page.target,
@@ -118,5 +164,4 @@ class RestClient:
         traceback: Optional[TracebackType],
     ) -> None:
         """Clears Client."""
-        self._client = None
         self._page = _EmptyPage()

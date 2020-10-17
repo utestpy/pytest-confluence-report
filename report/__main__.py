@@ -1,13 +1,10 @@
 """Represents executable entrypoint for `report_from` application."""
 import textwrap
 from typer import Option, run
-from uyaml import YamlFromPath
-from report.xml import PytestXml, ReportPage
-from report import SETTINGS_PATH, XML_PATH, confluence
-from report.settings import ConfluenceSettings
+from report import SETTINGS_PATH, XML_PATH, easy_build
 
 
-def __main(
+def main(
     settings_path: str = Option(
         default=SETTINGS_PATH,
         help=textwrap.dedent(
@@ -20,13 +17,8 @@ def __main(
     ),
 ) -> None:
     """Tool allows to convert pytest results into Confluence page."""
-
-    with confluence.RestClient(
-        settings=ConfluenceSettings(YamlFromPath(settings_path))
-    ) as client:
-        report = ReportPage(PytestXml(path=xml_path))
-        client.build_page(content=report.build_report_table())
+    easy_build(settings_path, xml_path)
 
 
 if __name__ == "__main__":
-    run(__main)
+    run(main)

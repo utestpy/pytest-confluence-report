@@ -1,6 +1,8 @@
 """Module provides a set of API for XML files."""
 import logging
 from abc import ABC, abstractmethod
+from types import TracebackType
+from typing import Optional, Type
 from typing import Dict, Iterator
 from junitparser import JUnitXml, TestCase as JCase, TestSuite as JSuite
 
@@ -190,8 +192,20 @@ class ReportPage:
 
     def __init__(self, xml: TestXml) -> None:
         self._xml = xml
+        self._content: str = ''
 
-    def build_report_table(self) -> str:
+    def __enter__(self) -> 'ReportPage':
+        """Returns report page instance."""
+        if not self._content:
+            self._content += self.build_results_table()
+        return self
+
+    @property
+    def content(self) -> str:
+        """Returns report page content."""
+        return self._content
+
+    def build_results_table(self) -> str:
         """Returns test run stats."""
         _logger.info('Collecting statistics from "%s" file', self._xml.name)
         return (
@@ -202,3 +216,12 @@ class ReportPage:
             f'Skipped: {self._xml.outcome.skipped}\n'
             f'Errored: {self._xml.outcome.errored}\n'
         )
+
+    def __exit__(
+        self,
+        exception_type: Optional[Type[BaseException]],
+        exception_value: Optional[BaseException],
+        traceback: Optional[TracebackType],
+    ) -> None:
+        """Clears report page content."""
+        self._content = ''

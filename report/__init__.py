@@ -17,7 +17,7 @@ __author__: str = 'Volodymyr Yahello'
 __email__: str = 'vyahello@gmail.com'
 __license__: str = 'MIT'
 __copyright__: str = f'Copyright 2020, {__author__}'
-__version__: str = '0.0.1'
+__version__: str = '0.0.2'
 __package_name: str = 'pytest-confluence-report'
 __all__: Tuple[str, ...] = (
     'ConfluenceContent',

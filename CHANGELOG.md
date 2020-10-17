@@ -1,7 +1,7 @@
 Versions
 ========
 
-0.0.1
+0.0.2
 ========
 
 _Release date: 17.10.2020_
@@ -26,3 +26,11 @@ _Release date: 17.10.2020_
 - Create Confluence page interface
 - Integrate confluence uploader within pytest
 - Use `--confluence-upload` pytest parameter
+
+
+0.0.1
+========
+
+_Release date: 17.10.2020_
+
+- Distribute initial package version.

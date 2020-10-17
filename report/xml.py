@@ -1,12 +1,18 @@
 """Module provides a set of API for XML files."""
 import logging
 from abc import ABC, abstractmethod
+from datetime import date
 from types import TracebackType
 from typing import Optional, Type
 from typing import Dict, Iterator
 from junitparser import JUnitXml, TestCase as JCase, TestSuite as JSuite
 
 _logger: logging.Logger = logging.getLogger(__name__)
+
+
+def _date(format_string: str = '%B %d, %Y') -> str:
+    """Returns current date."""
+    return date.today().strftime(format_string)
 
 
 class _Outcome:
@@ -197,6 +203,7 @@ class ReportPage:
     def __enter__(self) -> 'ReportPage':
         """Returns report page instance."""
         if not self._content:
+            self._content += f'<p><strong>Date</strong>: {_date()}</p>'
             self._content += self.build_status_table()
         return self
 
@@ -221,7 +228,7 @@ class ReportPage:
             )
         )
         return (
-            '<h2><b>Test status:</b></h2>'
+            '<h3><b>Test status:</b></h3>'
             "<table border='1'>"
             f"<tr align='center' style='font-weight:bold'>{header}</tr>"
             f'<tr>{amount}</tr></table>'

@@ -1,18 +1,7 @@
 """Module provides a set of API for XML files."""
-import logging
 from abc import ABC, abstractmethod
-from datetime import date
-from types import TracebackType
-from typing import Optional, Type
 from typing import Dict, Iterator
 from junitparser import JUnitXml, TestCase as JCase, TestSuite as JSuite
-
-_logger: logging.Logger = logging.getLogger(__name__)
-
-
-def _date(format_string: str = '%B %d, %Y') -> str:
-    """Returns current date."""
-    return date.today().strftime(format_string)
 
 
 class _Outcome:
@@ -191,54 +180,3 @@ class PytestXml(TestXml):
     def testsuites(self) -> _Testsuites:
         """Returns pytest suites from xml file."""
         return self._xml.testsuites
-
-
-class ReportPage:
-    """Represent test report page."""
-
-    def __init__(self, xml: TestXml) -> None:
-        self._xml = xml
-        self._content: str = ''
-
-    def __enter__(self) -> 'ReportPage':
-        """Returns report page instance."""
-        if not self._content:
-            self._content += f'<p><strong>Date</strong>: {_date()}</p>'
-            self._content += self.build_status_table()
-        return self
-
-    @property
-    def content(self) -> str:
-        """Returns report page content."""
-        return self._content
-
-    def build_status_table(self) -> str:
-        """Returns test status HTML table."""
-        _logger.info('Collecting statistics from "%s" file', self._xml.name)
-        header: str = ''.join(
-            map(
-                lambda status: f'<td><b>{status}</b></td>',
-                self._xml.outcome.as_dict().keys(),
-            )
-        )
-        amount: str = ''.join(
-            map(
-                lambda count: f'<td><b>{count}</b></td>',
-                self._xml.outcome.as_dict().values(),
-            )
-        )
-        return (
-            '<h3><b>Test status:</b></h3>'
-            "<table border='1'>"
-            f"<tr align='center' style='font-weight:bold'>{header}</tr>"
-            f'<tr>{amount}</tr></table>'
-        )
-
-    def __exit__(
-        self,
-        exception_type: Optional[Type[BaseException]],
-        exception_value: Optional[BaseException],
-        traceback: Optional[TracebackType],
-    ) -> None:
-        """Clears report page content."""
-        self._content = ''

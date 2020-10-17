@@ -2,7 +2,8 @@
 import logging
 from typing import Tuple
 from uyaml import ContextYamlFromPath, Yaml
-from report.xml import PytestXml, ReportPage
+from report.xml import PytestXml
+from report.html import ReportPage
 from report.confluence import (
     ConfluenceContent,
     ConfluencePage,

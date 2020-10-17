@@ -208,18 +208,23 @@ class ReportPage:
     def build_status_table(self) -> str:
         """Returns test status HTML table."""
         _logger.info('Collecting statistics from "%s" file', self._xml.name)
+        header: str = ''.join(
+            map(
+                lambda status: f'<td><b>{status}</b></td>',
+                self._xml.outcome.as_dict().keys(),
+            )
+        )
+        amount: str = ''.join(
+            map(
+                lambda count: f'<td><b>{count}</b></td>',
+                self._xml.outcome.as_dict().values(),
+            )
+        )
         return (
-            f'<table border="1"><tr align="center" style="font-weight:bold">'
-            f'<tr><td><b>Total</b></td>'
-            f'<td><b>Passed</b></td>'
-            f'<td><b>Failed</b></td>'
-            f'<td><b>Skipped</b></td>'
-            f'<td><b>Errored</b></td></tr>'
-            f'<tr><td>{self._xml.outcome.total}</td>'
-            f'<td>{self._xml.outcome.passed}</td>'
-            f'<td>{self._xml.outcome.failed}</td>'
-            f'<td>{self._xml.outcome.skipped}</td>'
-            f'<td>{self._xml.outcome.errored}</td></tr></table>'
+            '<h2><b>Test status:</b></h2>'
+            "<table border='1'>"
+            f"<tr align='center' style='font-weight:bold'>{header}</tr>"
+            f'<tr>{amount}</tr></table>'
         )
 
     def __exit__(

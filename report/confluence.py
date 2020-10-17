@@ -81,7 +81,7 @@ class _ConfluencePage(Page):
         )
 
 
-class Client:
+class RestClient:
     """The class represents interface to work with Confluence REST."""
 
     def __init__(self, settings: ConfluenceSettings) -> None:
@@ -89,7 +89,7 @@ class Client:
         self._client: Optional[Confluence] = None
         self._page: Page = _EmptyPage()
 
-    def __enter__(self) -> "Client":
+    def __enter__(self) -> "RestClient":
         """Returns Confluence Client."""
         if not self._client:
             self._client = _client_from_settings(self._settings)

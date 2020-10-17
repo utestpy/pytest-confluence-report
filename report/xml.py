@@ -87,13 +87,17 @@ class _Testsuite(Iterator[_Testcase]):
         """Count of testcases."""
         return len(self._suite)
 
+    def name(self) -> str:
+        """Testsuite name."""
+        return self._suite.name
+
 
 class _Testsuites(Iterator[_Testsuite]):
     """Testsuites from xml file."""
 
-    def __init__(self, suites: JUnitXml) -> None:
-        self._suites = suites
-        self._iter_suite = iter(suites)
+    def __init__(self, xml: JUnitXml) -> None:
+        self._xml = xml
+        self._suites = iter(xml)
 
     def __iter__(self) -> Iterator[_Testsuite]:
         """Returns testsuites iterator."""
@@ -101,11 +105,15 @@ class _Testsuites(Iterator[_Testsuite]):
 
     def __next__(self) -> _Testsuite:
         """Returns a testsuite."""
-        return _Testsuite(next(self._iter_suite))
+        return _Testsuite(next(self._suites))
 
     def __len__(self) -> int:
         """Count of testsuites."""
-        return len(self._suites)
+        return len(self._xml)
+
+    def name(self) -> str:
+        """Testsuites name."""
+        return self._xml.name
 
 
 class TestXml(ABC):
@@ -177,14 +185,20 @@ class PytestXml(TestXml):
         return self._xml.testsuites
 
 
-def report_from_xml(xml: TestXml) -> str:
-    """Returns test run stats."""
-    _logger.info('Collecting statistics from "%s" file', xml.name)
-    return (
-        '<h1>Test report:</h1>\n'
-        f'Total: {xml.outcome.total}\n'
-        f'Passed: {xml.outcome.passed}\n'
-        f'Failed: {xml.outcome.failed}\n'
-        f'Skipped: {xml.outcome.skipped}\n'
-        f'Errored: {xml.outcome.errored}\n'
-    )
+class ReportPage:
+    """Represent test report page."""
+
+    def __init__(self, xml: TestXml) -> None:
+        self._xml = xml
+
+    def build_report_table(self) -> str:
+        """Returns test run stats."""
+        _logger.info('Collecting statistics from "%s" file', self._xml.name)
+        return (
+            '<h1>Test report:</h1>\n'
+            f'Total: {self._xml.outcome.total}\n'
+            f'Passed: {self._xml.outcome.passed}\n'
+            f'Failed: {self._xml.outcome.failed}\n'
+            f'Skipped: {self._xml.outcome.skipped}\n'
+            f'Errored: {self._xml.outcome.errored}\n'
+        )

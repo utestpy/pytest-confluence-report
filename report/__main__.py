@@ -2,7 +2,7 @@
 import textwrap
 from typer import Option, run
 from uyaml import YamlFromPath
-from report.xml import PytestXml, report_from_xml
+from report.xml import PytestXml, ReportPage
 from report import SETTINGS_PATH, XML_PATH, confluence
 from report.settings import ConfluenceSettings
 
@@ -21,10 +21,11 @@ def __main(
 ) -> None:
     """Tool allows to convert pytest results into Confluence page."""
 
-    with confluence.Client(
+    with confluence.RestClient(
         settings=ConfluenceSettings(YamlFromPath(settings_path))
     ) as client:
-        client.build_page(content=report_from_xml(PytestXml(path=xml_path)))
+        report = ReportPage(PytestXml(path=xml_path))
+        client.build_page(content=report.build_report_table())
 
 
 if __name__ == "__main__":

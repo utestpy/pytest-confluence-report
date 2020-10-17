@@ -6,7 +6,7 @@ from _pytest.config.argparsing import OptionGroup, Parser
 from uyaml import YamlFromPath
 from report import SETTINGS_PATH, XML_PATH, confluence
 from report.settings import ConfluenceSettings
-from report.xml import PytestXml, report_from_xml
+from report.xml import PytestXml, ReportPage
 
 _logger: logging.Logger = logging.getLogger(__name__)
 
@@ -52,13 +52,12 @@ def pytest_unconfigure(config: Config) -> None:
     """Pytest hook that launches at the end of test run."""
     if config.getoption('confluence_upload'):
         _logger.info('Uploading testing results to confluence ...')
-        with confluence.Client(
+        with confluence.RestClient(
             settings=ConfluenceSettings(
                 YamlFromPath(config.getoption('confluence_settings'))
             )
         ) as client:
-            client.build_page(
-                content=report_from_xml(
-                    PytestXml(path=config.getoption('pytest_xml_path'))
-                )
+            report = ReportPage(
+                xml=PytestXml(path=config.getoption('pytest_xml_path'))
             )
+            client.build_page(content=report.build_report_table())

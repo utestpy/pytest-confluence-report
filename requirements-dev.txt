@@ -30,3 +30,5 @@ pytest-mock==3.3.1
 pytest-sugar==0.9.4
 typer==0.3.2
 uyaml==0.0.7
+junitparser==1.4.1
+lxml==4.5.2

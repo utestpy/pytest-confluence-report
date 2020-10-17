@@ -8,6 +8,19 @@ _Release date: 17.10.2020_
 
 **Features**
 
+- Remove `--pytest-xml-path` pytest parameter
+
+**Changes**
+
+- Fix usage within documentation
+
+0.0.1
+========
+
+_Release date: 17.10.2020_
+
+**Features**
+
 - Create test status report table based on XML file
 - Use `--confluence-upload/--cu` pytest parameter to enable plugin
 - Use `--confluence-settings/--sc` and `--pytest-xml-path/--px` optional pytest parameters to customize behaviour
@@ -26,11 +39,3 @@ _Release date: 17.10.2020_
 - Create Confluence page interface
 - Integrate confluence uploader within pytest
 - Use `--confluence-upload` pytest parameter
-
-
-0.0.1
-========
-
-_Release date: 17.10.2020_
-
-- Distribute initial package version

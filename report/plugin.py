@@ -3,7 +3,7 @@ import logging
 import sys
 from _pytest.config import Config
 from _pytest.config.argparsing import OptionGroup, Parser
-from report import SETTINGS_PATH, XML_PATH, easy_build
+from report import SETTINGS_PATH, easy_build
 
 _logger: logging.Logger = logging.getLogger(__name__)
 
@@ -28,13 +28,6 @@ def pytest_addoption(parser: Parser) -> None:
         default=SETTINGS_PATH,
         help=f'Path to Confluence settings file e.g `{SETTINGS_PATH}`.',
     )
-    group.addoption(
-        '--pytest-xml-path',
-        '--px',
-        type=str,
-        default=XML_PATH,
-        help=f'Path to pytest XML file e.g `{XML_PATH}`.',
-    )
 
 
 def pytest_report_header() -> str:
@@ -51,5 +44,5 @@ def pytest_unconfigure(config: Config) -> None:
         _logger.info('Uploading testing results to confluence ...')
         easy_build(
             settings_path=config.getoption(name='confluence_settings'),
-            xml_path=config.getoption(name='pytest_xml_path'),
+            xml_path=config.option.xmlpath,
         )

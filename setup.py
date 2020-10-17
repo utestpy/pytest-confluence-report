@@ -54,6 +54,8 @@ def main() -> None:
         include_package_data=True,
         install_requires=__requirements(),
         classifiers=(
+            "Framework :: Pytest",
+            "Topic :: Software Development :: Testing",
             "Programming Language :: Python :: 3.6",
             "Programming Language :: Python :: 3.7",
             "Programming Language :: Python :: 3.8",

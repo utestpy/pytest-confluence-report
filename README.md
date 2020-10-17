@@ -52,7 +52,7 @@ pip install pytest-confluence-report
 > Please make sure your [settings.yml](settings.yml) file is properly configured before execution.
 
 ```bash
-pytest --confluence-upload
+pytest --junit-xml=pytest.xml --confluence-upload
 ```
 
 ### Source code
@@ -64,14 +64,14 @@ pip install -e .
 
 Or using direct release:
 ```bash
-pip install git+https://github.com/vyahello/pytest-confluence-report@0.0.1
+pip install git+https://github.com/vyahello/pytest-confluence-report@0.0.2
 ```
 
 ### Local debug
 
 ```bash
 git clone git@github.com:vyahello/pytest-confluence-report.git
-python -m report --settings <file.yml> --xml-path <pytest.xml>
+python -m report --settings settings.yml --xml-path pytest.xml
 ```
 
 **[⬆ back to top](#pytest-confluence-report)**

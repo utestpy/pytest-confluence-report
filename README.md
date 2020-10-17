@@ -49,8 +49,10 @@ pip install pytest-confluence-report
 
 ### Quick start
 
+> Please make sure your [settings.yml](settings.yml) file is properly configured before execution.
+
 ```bash
-pytest --confluence-upload/-cu
+pytest --confluence-upload
 ```
 
 ### Source code

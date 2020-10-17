@@ -1,4 +1,5 @@
 """Package setup entrypoint."""
+import sys
 from typing import IO, Sequence
 from setuptools import (
     find_packages as __find_packages,
@@ -36,7 +37,7 @@ def __first_line(string: str, delimiter: str = "\n") -> str:
     return string.split(delimiter)[0]
 
 
-def __main() -> None:
+def main() -> None:
     """Setup package entrypoint."""
     __compose_package(
         name=__name,
@@ -65,4 +66,4 @@ def __main() -> None:
 
 
 if __name__ == "__main__":
-    __main()
+    sys.exit(main())

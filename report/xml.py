@@ -43,11 +43,11 @@ class _Outcome:
     def as_dict(self) -> Dict[str, int]:
         """Returns tests as dict."""
         return {
-            'total': self.total,
-            'skipped': self.skipped,
-            'failed': self.failed,
-            'errored': self.errored,
-            'passed': self.passed,
+            'Total': self.total,
+            'Passed': self.passed,
+            'Failed': self.failed,
+            'Skipped': self.skipped,
+            'Errored': self.errored,
         }
 
 
@@ -197,7 +197,7 @@ class ReportPage:
     def __enter__(self) -> 'ReportPage':
         """Returns report page instance."""
         if not self._content:
-            self._content += self.build_results_table()
+            self._content += self.build_status_table()
         return self
 
     @property
@@ -205,16 +205,21 @@ class ReportPage:
         """Returns report page content."""
         return self._content
 
-    def build_results_table(self) -> str:
-        """Returns test run stats."""
+    def build_status_table(self) -> str:
+        """Returns test status HTML table."""
         _logger.info('Collecting statistics from "%s" file', self._xml.name)
         return (
-            '<h1>Test report:</h1>\n'
-            f'Total: {self._xml.outcome.total}\n'
-            f'Passed: {self._xml.outcome.passed}\n'
-            f'Failed: {self._xml.outcome.failed}\n'
-            f'Skipped: {self._xml.outcome.skipped}\n'
-            f'Errored: {self._xml.outcome.errored}\n'
+            f'<table border="1"><tr align="center" style="font-weight:bold">'
+            f'<tr><td><b>Total</b></td>'
+            f'<td><b>Passed</b></td>'
+            f'<td><b>Failed</b></td>'
+            f'<td><b>Skipped</b></td>'
+            f'<td><b>Errored</b></td></tr>'
+            f'<tr><td>{self._xml.outcome.total}</td>'
+            f'<td>{self._xml.outcome.passed}</td>'
+            f'<td>{self._xml.outcome.failed}</td>'
+            f'<td>{self._xml.outcome.skipped}</td>'
+            f'<td>{self._xml.outcome.errored}</td></tr></table>'
         )
 
     def __exit__(

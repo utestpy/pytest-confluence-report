@@ -34,7 +34,7 @@ test:
   install:
     - pip install pip -U && pip install -r requirements-dev.txt -U
   script:
-    pytest ./tests
+    - pytest ./tests
   after_success:
     - coveralls
   notifications:

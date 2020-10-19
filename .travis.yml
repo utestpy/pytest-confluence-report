@@ -14,6 +14,7 @@ before_install:
 install:
   - pip install pip -U && pip install -r requirements-dev.txt -U
 script:
+  - pytest ./tests
   - bats test-package.bats
   - ./analyse-source-code.sh
 after_success:

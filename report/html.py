@@ -49,7 +49,7 @@ class _HtmlPage:
             f'<tr>{amount}</tr>{self.TABLE_END_TAG}'
         )
 
-    def build_opened_bugs(self) -> str:
+    def build_opened_bugs_table(self) -> str:
         """Returns opened bugs table."""
         return (
             f'<h3>{self.STRONG_ELEMENT.format("Opened bugs:")}</h3>'
@@ -61,6 +61,24 @@ class _HtmlPage:
             '<td><b>Issue</b></td></tr>'
             f'<tr><td></td><td></td><td></td></tr>{self.TABLE_END_TAG}'
         )
+
+    def build_failures_table(self) -> str:
+        """Returns failures table."""
+        return (
+            f'<h3>{self.STRONG_ELEMENT.format("Failures:")}</h3>'
+            f'{self.STRONG_ELEMENT.format("Total: N")}'
+            f'{self.TABLE_START_TAG}'
+            f'<tr {self.HEADER_STYLE}>'
+            '<td><b>Frequency</b></td>'
+            '<td><b>Assertion</b></td>'
+            '<td><b>Test name(s)</b></td>'
+            '<td><b>Reason</b></td>'
+            '<td><b>Resolution</b></td></tr>'
+            f'<tr>'
+            f'<td></td><td></td><td></td><td></td><td></td>'
+            f'</tr>{self.TABLE_END_TAG}'
+        )
+
 
 
 class ReportPage:
@@ -77,7 +95,8 @@ class ReportPage:
             _logger.info('Collecting statistics from "%s" file', self._xml.name)
             self._content += self._page.build_date()
             self._content += self._page.build_status_table()
-            self._content += self._page.build_opened_bugs()
+            self._content += self._page.build_opened_bugs_table()
+            self._content += self._page.build_failures_table()
         return self
 
     @property

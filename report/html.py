@@ -19,7 +19,8 @@ class _HtmlPage:
     STRONG_ELEMENT = '<strong>{}</strong>'
     TABLE_START_TAG = "<table border='1'>"
     TABLE_END_TAG = '</table>'
-    HEADER_STYLE = "align='center' bgcolor='azure' style='font-weight:bold'"
+    HEADER_ROW_STYLE = "align='center' style='font-weight:bold'"
+    HEADER_COLUMN_STYLE = 'data-highlight-colour="#eae6ff" class="confluenceTd"'
 
     def __init__(self, xml: TestXml) -> None:
         self._xml: TestXml = xml
@@ -32,7 +33,8 @@ class _HtmlPage:
         """Returns test status HTML table."""
         header: str = ''.join(
             map(
-                lambda status: f'<td><b>{status}</b></td>',
+                lambda status: f'<td {self.HEADER_COLUMN_STYLE}>'
+                f'<b>{status}</b></td>',
                 self._xml.outcome.as_dict().keys(),
             )
         )
@@ -45,7 +47,7 @@ class _HtmlPage:
         return (
             f'<h3>{self.STRONG_ELEMENT.format("Test status:")}</h3>'
             f'{self.TABLE_START_TAG}'
-            f"<tr {self.HEADER_STYLE}>{header}</tr>"
+            f"<tr {self.HEADER_ROW_STYLE}>{header}</tr>"
             f'<tr>{amount}</tr>{self.TABLE_END_TAG}'
         )
 
@@ -55,10 +57,10 @@ class _HtmlPage:
             f'<h3>{self.STRONG_ELEMENT.format("Opened bugs:")}</h3>'
             f'{self.STRONG_ELEMENT.format("Total: N")}'
             f'{self.TABLE_START_TAG}'
-            f'<tr {self.HEADER_STYLE}>'
-            '<td><b>Frequency</b></td>'
-            '<td><b>Type(Known/New)</b></td>'
-            '<td><b>Issue</b></td></tr>'
+            f'<tr {self.HEADER_ROW_STYLE}>'
+            f'<td {self.HEADER_COLUMN_STYLE}><b>Frequency</b></td>'
+            f'<td {self.HEADER_COLUMN_STYLE}><b>Type(Known/New)</b></td>'
+            f'<td {self.HEADER_COLUMN_STYLE}><b>Issue</b></td></tr>'
             f'<tr><td></td><td></td><td></td></tr>{self.TABLE_END_TAG}'
         )
 
@@ -68,17 +70,16 @@ class _HtmlPage:
             f'<h3>{self.STRONG_ELEMENT.format("Failures:")}</h3>'
             f'{self.STRONG_ELEMENT.format("Total: N")}'
             f'{self.TABLE_START_TAG}'
-            f'<tr {self.HEADER_STYLE}>'
-            '<td><b>Frequency</b></td>'
-            '<td><b>Assertion</b></td>'
-            '<td><b>Test name(s)</b></td>'
-            '<td><b>Reason</b></td>'
-            '<td><b>Resolution</b></td></tr>'
+            f'<tr {self.HEADER_ROW_STYLE}>'
+            f'<td {self.HEADER_COLUMN_STYLE}><b>Frequency</b></td>'
+            f'<td {self.HEADER_COLUMN_STYLE}><b>Assertion</b></td>'
+            f'<td {self.HEADER_COLUMN_STYLE}><b>Test name(s)</b></td>'
+            f'<td {self.HEADER_COLUMN_STYLE}><b>Reason</b></td>'
+            f'<td {self.HEADER_COLUMN_STYLE}><b>Resolution</b></td></tr>'
             f'<tr>'
             f'<td></td><td></td><td></td><td></td><td></td>'
             f'</tr>{self.TABLE_END_TAG}'
         )
-
 
 
 class ReportPage:

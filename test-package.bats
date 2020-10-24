@@ -36,6 +36,15 @@ DOC
 }
 
 
+@test "package setup" {
+:<<DOC
+  Test package version
+DOC
+  pip install ${PACKAGE_NAME}==${PACKAGE_VERSION}
+  [ "$?" -eq 0 ]
+}
+
+
 @test "pytest confluence group" {
 :<<DOC
   Test pytest confluence group help message

@@ -17,7 +17,7 @@
 
 > Pytest plugin to convert test results into confluence page report to proceed with tests analysis.
 > 
-> **Note:** the project is under construction.
+> ⚠️  **Note:** the project is under construction.
 
 ## Tools
 

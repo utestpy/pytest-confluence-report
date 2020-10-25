@@ -14,6 +14,7 @@ jobs:
       env: PACKAGE_NAME=pytest-confluence-report PACKAGE_VERSION=0.0.2
       install:
         - pip install pip -U
+        - python setup.py install
       after_success:
         - coveralls
     - stage: unittests
@@ -25,3 +26,5 @@ jobs:
         script:
           - bats test-package.bats
           - ./analyse-source-code.sh
+        after_success:
+          - coveralls

@@ -36,9 +36,9 @@ DOC
 }
 
 
-@test "package setup" {
+@test "test local setup" {
 :<<DOC
-  Test package version
+  Test local setup
 DOC
   pip install ${PACKAGE_NAME}==${PACKAGE_VERSION}
   [ "$?" -eq 0 ]

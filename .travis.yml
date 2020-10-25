@@ -10,13 +10,6 @@ notifications:
   email: false
 jobs:
   include:
-    - name: "build"
-      env: PACKAGE_NAME=pytest-confluence-report PACKAGE_VERSION=0.0.2
-      install:
-        - pip install pip -U
-        - python setup.py install
-      after_success:
-        - coveralls
     - name: "unittests"
       before_install:
         - sudo add-apt-repository -y ppa:duggan/bats
@@ -28,6 +21,10 @@ jobs:
         - ./analyse-source-code.sh
       after_success:
         - coveralls
-stages:
-  - name: unittests
-  - name: build
+    - name: "build"
+      env: PACKAGE_NAME=pytest-confluence-report PACKAGE_VERSION=0.0.2
+      install:
+        - pip install pip -U
+        - python setup.py install
+      after_success:
+        - coveralls

@@ -10,21 +10,24 @@ notifications:
   email: false
 jobs:
   include:
-    - stage: build
+    - name: "build"
       env: PACKAGE_NAME=pytest-confluence-report PACKAGE_VERSION=0.0.2
       install:
         - pip install pip -U
         - python setup.py install
       after_success:
         - coveralls
-    - stage: unittests
-        before_install:
-          - sudo add-apt-repository -y ppa:duggan/bats
-          - sudo apt-get -y install bats
-        install:
-          - pip install pip -U && pip install -r requirements-dev.txt -U
-        script:
-          - bats test-package.bats
-          - ./analyse-source-code.sh
-        after_success:
-          - coveralls
+    - name: "unittests"
+      before_install:
+        - sudo add-apt-repository -y ppa:duggan/bats
+        - sudo apt-get -y install bats
+      install:
+        - pip install pip -U && pip install -r requirements-dev.txt -U
+      script:
+        - bats test-package.bats
+        - ./analyse-source-code.sh
+      after_success:
+        - coveralls
+stages:
+  - name: unittests
+  - name: build

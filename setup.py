@@ -3,13 +3,10 @@ import re
 import sys
 from pathlib import Path
 from typing import IO, Sequence
-from setuptools import (
-    find_packages as __find_packages,
-    setup as __compose_package,
-)
+from setuptools import PackageFinder, setup
 
 
-class __Package:
+class _Package:
     """Represents a single package."""
 
     def __init__(self, path: Path) -> None:
@@ -31,7 +28,7 @@ class __Package:
     def author(self) -> str:
         """Returns a package author e.g `some-author`."""
         return self._read(
-            pattern=r"(?<=__author__: str = ')[\w-]+",
+            pattern=r"(?<=__author__: str = ')[\w\s-]+",
         )
 
     @property
@@ -45,7 +42,7 @@ class __Package:
     def email(self) -> str:
         """Returns a package email e.g `some-email@com`."""
         return self._read(
-            pattern=r"(?<=__email__: str = ')[\w-]+",
+            pattern=r"(?<=__email__: str = ')[\w@\.-]+",
         )
 
     @property
@@ -65,34 +62,38 @@ class __Package:
         )[0]
 
 
-def __readme() -> str:
+def _readme() -> str:
     """Returns project description."""
     with open("README.md") as readme:  # type: IO[str]
         return readme.read()
 
 
-def __requirements() -> Sequence[str]:
+def _requirements() -> Sequence[str]:
     """Returns requirements sequence."""
     with open("requirements.txt") as requirements:  # type: IO[str]
         return tuple(map(str.strip, requirements.readlines()))
 
 
-def main(package: __Package) -> None:
-    """Setup package entrypoint."""
-    __compose_package(
+def _setup_package(package: _Package) -> None:
+    """Setup package entrypoint.
+
+    Args:
+        package: a package
+    """
+    setup(
         name=package.name,
         version=package.version,
         author=package.author,
         author_email=package.email,
         description=package.goal,
-        long_description=__readme(),
+        long_description=_readme(),
         long_description_content_type="text/markdown",
         url=f"https://github.com/vyahello/{package.name}",
-        packages=__find_packages(
-            exclude=("*.tests", "*.tests.*", "tests.*", "tests")
+        packages=PackageFinder.find(
+            where='.', exclude=("*.tests", "*.tests.*", "tests.*", "tests")
         ),
         include_package_data=True,
-        install_requires=__requirements(),
+        install_requires=_requirements(),
         classifiers=(
             "Framework :: Pytest",
             "Topic :: Software Development :: Testing",
@@ -108,4 +109,4 @@ def main(package: __Package) -> None:
 
 
 if __name__ == "__main__":
-    sys.exit(main(package=__Package(path=Path('report'))))
+    sys.exit(_setup_package(package=_Package(path=Path('report'))))

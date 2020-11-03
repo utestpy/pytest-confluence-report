@@ -19,7 +19,7 @@ __email__: str = 'vyahello@gmail.com'
 __license__: str = 'MIT'
 __copyright__: str = f'Copyright 2020, {__author__}'
 __version__: str = '0.0.2'
-__package_name: str = 'pytest-confluence-report'
+__package_name__: str = 'pytest-confluence-report'
 __all__: Tuple[str, ...] = (
     'ConfluenceContent',
     'ConfluencePage',

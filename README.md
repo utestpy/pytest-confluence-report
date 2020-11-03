@@ -17,7 +17,7 @@
 
 > Pytest plugin to convert test results into confluence page report to proceed with tests analysis.
 > 
-> **Note:** the project is under construction.
+> ⚠️  **Note:** the project is under construction.
 
 ## Tools
 
@@ -37,6 +37,7 @@
 - [flake8](http://flake8.pycqa.org/en/latest/)
 - [pydocstyle](https://github.com/PyCQA/pydocstyle)
 - [interrogate](https://interrogate.readthedocs.io/en/latest/)
+- [bats](https://github.com/sstephenson/bats)
 
 ## Usage
 
@@ -87,14 +88,22 @@ Please follow next command to run unittests:
 pytest
 ```
 
+In addition, package unit tests are implemented with [bats](https://github.com/sstephenson/bats) framework:
+> `PACKAGE_NAME` and `PACKAGE_VERSION` environment variables should be set to run tests.
+
+```bash
+bats --pretty test-package.bats
+```
+
 ### CI
 
-Project has Travis CI integration using [.travis.yml](.travis.yml) file thus code analysis (`black`, `pylint`, `flake8`, `mypy`, `pydocstyle` and `interrogate`) and unittests (`pytest`) will be run automatically after every made change to the repository.
+Project has Travis CI integration using [.travis.yml](.travis.yml) file thus code analysis (`black`, `pylint`, `flake8`, `mypy`, `pydocstyle` and `interrogate`) and unittests (`pytest`, `bats`) will be run automatically after every made change to the repository.
 
 To be able to run code analysis, please execute command below:
 ```bash
 ./analyse-source-code.sh
 ```
+
 ### Release notes
 
 Please check [changelog](CHANGELOG.md) file to get more details about actual versions and it's release notes.

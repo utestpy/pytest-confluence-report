@@ -1,7 +1,6 @@
 """Package stands for pytest plugin to upload results into Confluence page."""
 import logging
 from typing import Tuple
-from uyaml import ContextYamlFromPath, Yaml
 from report.xml import PytestXml
 from report.html import ReportPage
 from report.confluence import (
@@ -34,23 +33,3 @@ logging.basicConfig(
     format='%(asctime)s %(levelname)s %(message)s',
     level=logging.INFO,
 )
-
-
-def easy_build(settings_path: str, xml_path: str) -> None:
-    """Builds Confluence report page based on settings path and test XML file.
-
-    Args:
-        settings_path: <str> a settings path.
-        xml_path: <str> an XML path.
-    """
-    with ContextYamlFromPath(path=settings_path) as yaml:  # type: Yaml
-        confluence_settings: Settings = ConfluenceSettings(settings=yaml)
-        with ConfluenceContent(
-            ConfluencePage(
-                settings=confluence_settings,
-                client=client_from_settings(confluence_settings),
-            ),
-            settings=confluence_settings,
-        ) as page:
-            with ReportPage(PytestXml(path=xml_path)) as report:
-                page.build(content=report.content)

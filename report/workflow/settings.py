@@ -1,5 +1,6 @@
 """Module provides a set of API to manipulate user topology settings."""
 from typing import Any, Dict, Sequence
+
 from uyaml import Yaml
 from punish import AbstractStyle, abstractstyle
 

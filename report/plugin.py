@@ -1,10 +1,11 @@
 """Module contains confluence reporter plugin AP."""
 import logging
 import sys
+
 from _pytest.config import Config
 from _pytest.config.argparsing import OptionGroup, Parser
-from report import SETTINGS_PATH
-from report.build import easy_build
+
+from report import SETTINGS_PATH, easy_build
 
 _logger: logging.Logger = logging.getLogger(__name__)
 
@@ -15,7 +16,7 @@ def pytest_addoption(parser: Parser) -> None:
     Args:
         parser: Parser for command line arguments and ini-file values
     """
-    group: OptionGroup = parser.getgroup(name='Confluence report_from')
+    group: OptionGroup = parser.getgroup(name='Confluence test report')
     group.addoption(
         '--confluence-upload',
         '--cu',

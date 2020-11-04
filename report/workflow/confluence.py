@@ -3,8 +3,10 @@ import logging
 from abc import ABC, abstractmethod
 from types import TracebackType
 from typing import Optional, Type
+
 from atlassian import Confluence
-from report.settings import Settings
+
+from report import Settings
 
 _logger: logging.Logger = logging.getLogger(__name__)
 

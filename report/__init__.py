@@ -1,14 +1,16 @@
 """Package stands for pytest plugin to upload results into Confluence page."""
 import logging
 from typing import Tuple
-from report.xml import PytestXml
-from report.html import ReportPage
-from report.confluence import (
+
+from report.workflow.build import easy_build
+from report.workflow.confluence import (
     ConfluenceContent,
     ConfluencePage,
     client_from_settings,
 )
-from report.settings import ConfluenceSettings, Settings
+from report.workflow.html import ReportPage
+from report.workflow.settings import ConfluenceSettings, Settings
+from report.workflow.xml import PytestXml, TestXml
 
 SETTINGS_PATH: str = 'settings.yml'
 XML_PATH: str = 'pytest.xml'
@@ -26,6 +28,8 @@ __all__: Tuple[str, ...] = (
     'Settings',
     'PytestXml',
     'ReportPage',
+    'TestXml',
+    'easy_build',
     'client_from_settings',
 )
 

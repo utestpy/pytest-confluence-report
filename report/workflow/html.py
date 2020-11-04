@@ -3,7 +3,8 @@ import logging
 from datetime import date
 from types import TracebackType
 from typing import Optional, Type
-from report.xml import TestXml
+
+from report import TestXml
 
 _logger: logging.Logger = logging.getLogger(__name__)
 

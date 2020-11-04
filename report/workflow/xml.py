@@ -1,6 +1,7 @@
 """Module provides a set of API for XML files."""
 from abc import ABC, abstractmethod
 from typing import Dict, Iterator
+
 from junitparser import JUnitXml, TestCase as JCase, TestSuite as JSuite
 
 

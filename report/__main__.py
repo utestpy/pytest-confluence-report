@@ -1,8 +1,9 @@
 """Represents executable entrypoint for `report_from` application."""
 import textwrap
+
 from typer import Option, run
-from report import SETTINGS_PATH, XML_PATH
-from report.build import easy_build
+
+from report import SETTINGS_PATH, XML_PATH, easy_build
 
 
 def main(

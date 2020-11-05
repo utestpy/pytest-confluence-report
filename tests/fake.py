@@ -1,6 +1,6 @@
 from uyaml import Yaml
 from uyaml.loader import YamlType
-from report.settings import Settings, _Credentials, _Page
+from report.workflow.settings import Settings, _Credentials, _Page
 
 SECTION = {
     'url': '',

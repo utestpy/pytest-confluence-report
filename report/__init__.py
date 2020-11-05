@@ -2,15 +2,15 @@
 import logging
 from typing import Tuple
 
-from report.workflow.build import easy_build
+from report.workflow.settings import ConfluenceSettings, Settings
+from report.workflow.xml import PytestXml, TestXml
+from report.workflow.html import ReportPage
 from report.workflow.confluence import (
     ConfluenceContent,
     ConfluencePage,
     client_from_settings,
 )
-from report.workflow.html import ReportPage
-from report.workflow.settings import ConfluenceSettings, Settings
-from report.workflow.xml import PytestXml, TestXml
+from report.workflow.build import easy_build
 
 SETTINGS_PATH: str = 'settings.yml'
 XML_PATH: str = 'pytest.xml'

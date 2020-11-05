@@ -1,6 +1,6 @@
 import pytest
 from uyaml import Yaml
-from report.settings import (
+from report.workflow.settings import (
     ConfluenceSettings,
     Settings,
     _Credentials,

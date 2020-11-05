@@ -1,7 +1,7 @@
 import pytest
 import sys
 from uyaml import Yaml
-from report.settings import Settings
+from report.workflow.settings import Settings
 from tests.fake import FakeSettings, FakeYaml
 
 

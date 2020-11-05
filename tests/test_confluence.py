@@ -1,7 +1,7 @@
 import pytest
 from atlassian import Confluence
-from report.confluence import Page, _EmptyPage, client_from_settings
-from report.settings import Settings
+from report.workflow.confluence import Page, _EmptyPage, client_from_settings
+from report.workflow.settings import Settings
 
 
 @pytest.fixture(scope='module')

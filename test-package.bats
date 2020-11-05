@@ -40,7 +40,7 @@ DOC
 :<<DOC
   Test pytest confluence group help message
 DOC
-  pytest --help | grep "Confluence report"
+  pytest --help | grep "Confluence test report"
   [ "$?" -eq 0 ]
 }
 

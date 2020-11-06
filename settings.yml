@@ -4,15 +4,15 @@
 confluence:
   # Main Confluence URL e.g 'https://id.atlassian.net'
   url: ''
-  # Page names section
-  page:
-    # Parent page name e.g 'Home'
-    parent: ''
-    # Target page name e.g 'Personal web site performance tests'
-    target: ''
   # Confluence credentials section
   credentials:
-    # Confluence credentials username e.g 'email.com'
+    # Confluence user account e.g 'email.com'
     username: ''
     # Confluence API Key e.g '123abc'
     api-key: ''
+  # Confluence pages section
+  page:
+    # Confluence parent page name e.g 'Home'
+    parent: ''
+    # Confluence target page name e.g 'Personal web site performance tests'
+    target: ''

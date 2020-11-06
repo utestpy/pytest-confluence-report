@@ -4,4 +4,4 @@ exclude .coverage .python-version .gitignore
 include .* *.bats *.png *.md *.ini *.in *.yml *.toml *.cfg *.gif *.sh *.txt
 recursive-include report *.py
 recursive-include tests *.py
-recursive-include media *.png
+recursive-include media *.png *.gif

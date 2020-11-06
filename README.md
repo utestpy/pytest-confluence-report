@@ -41,6 +41,8 @@
 
 ## Usage
 
+![Usage](media/usage.gif)
+
 ### Installation
 
 ```bash

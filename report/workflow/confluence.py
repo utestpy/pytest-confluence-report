@@ -99,7 +99,7 @@ class ConfluencePage(Page):
         link: str = self._client.get_page_by_title(
             space=self._settings.page.parent, title=self._settings.page.target
         )['_links']['webui']
-        return f'{self._settings.url}wiki{link}'
+        return f'{self._settings.url}/wiki{link}'
 
     @property
     def id_(self) -> int:

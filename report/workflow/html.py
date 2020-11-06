@@ -60,8 +60,8 @@ class _HtmlPage:
             f'{self.TABLE_START_TAG}'
             f'<tr {self.HEADER_ROW_STYLE}>'
             f'<td {self.HEADER_COLUMN_STYLE}><b>Frequency</b></td>'
-            f'<td {self.HEADER_COLUMN_STYLE}><b>Type(Known/New)</b></td>'
-            f'<td {self.HEADER_COLUMN_STYLE}><b>Issue</b></td></tr>'
+            f'<td {self.HEADER_COLUMN_STYLE}><b>Type (Known/New)</b></td>'
+            f'<td {self.HEADER_COLUMN_STYLE}><b>Jira</b></td></tr>'
             f'<tr><td></td><td></td><td></td></tr>{self.TABLE_END_TAG}'
         )
 

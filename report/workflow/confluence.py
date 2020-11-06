@@ -3,6 +3,7 @@ import logging
 from abc import ABC, abstractmethod
 from types import TracebackType
 from typing import Optional, Type
+from urllib.parse import urljoin
 
 from atlassian import Confluence
 
@@ -99,7 +100,7 @@ class ConfluencePage(Page):
         link: str = self._client.get_page_by_title(
             space=self._settings.page.parent, title=self._settings.page.target
         )['_links']['webui']
-        return f'{self._settings.url}/wiki{link}'
+        return urljoin(self._settings.url, f'wiki{link}')
 
     @property
     def id_(self) -> int:
@@ -150,13 +151,22 @@ class ConfluenceContent:
         """
         if self._page.exists():
             self._page.update(content)
+            self._inform_page_action(action='updated')
         else:
-            _logger.info('Creating "%s" page', self._settings.page.target)
             self._page.build(content)
+            self._inform_page_action(action='created')
+
+    def _inform_page_action(self, action: str) -> None:
+        """Inform Confluence page action.
+
+        Args:
+            action: <str> an action
+        """
         _logger.info(
-            '"%s" page is created. Please follow "%s" link.',
+            '"%s" page is %s. Please follow "%s" link.',
             self._settings.page.target,
             self._page.link,
+            action,
         )
 
     def __exit__(

@@ -1,6 +1,34 @@
 Versions
 ========
 
+0.0.3
+=======
+_Release date: 06.11.2020_
+
+**Features**
+
+- Add colorized purple font for table headers
+- Create 'failures' table
+- Create 'opened bugs' table
+- Implement date section
+
+**Changes**
+
+- Fix Confluence page link forming
+- Fix package group unit test
+- Fix package import order
+- Introduce helper package
+- Create API to build report
+- Mention about bats integration
+- Fix failing Travis CI builds
+- Implement package setup unit tests
+- Release package setup from internal python dependencies
+- Warn that project in under construction
+- Add colorized purple font for table headers
+- Create failures table
+- Introduce HTML page builder
+- Implement date section
+
 0.0.2
 ========
 

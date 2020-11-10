@@ -1,12 +1,11 @@
 """Module provides a set of API for HTML page(s)."""
-import logging
 from datetime import date
 from types import TracebackType
 from typing import Optional, Type
 
-from report import TestXml
+from loguru import logger as _logger
 
-_logger: logging.Logger = logging.getLogger(__name__)
+from report import TestXml
 
 
 def _date(format_string: str = '%B %d, %Y') -> str:
@@ -94,7 +93,7 @@ class ReportPage:
     def __enter__(self) -> 'ReportPage':
         """Returns report page instance."""
         if not self._content:
-            _logger.info('Collecting statistics from "%s" file', self._xml.name)
+            _logger.info('Collecting statistics from "{}" file', self._xml.name)
             self._content += self._page.build_date()
             self._content += self._page.build_status_table()
             self._content += self._page.build_opened_bugs_table()

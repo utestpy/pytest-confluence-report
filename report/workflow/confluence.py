@@ -1,15 +1,13 @@
 """Module contains API to operate Confluence page(s)."""
-import logging
 from abc import ABC, abstractmethod
 from types import TracebackType
 from typing import Optional, Type
 from urllib.parse import urljoin
 
 from atlassian import Confluence
+from loguru import logger as _logger
 
 from report import Settings
-
-_logger: logging.Logger = logging.getLogger(__name__)
 
 
 def client_from_settings(settings: Settings) -> Confluence:
@@ -163,10 +161,10 @@ class ConfluenceContent:
             action: <str> an action
         """
         _logger.info(
-            '"%s" page is %s. Please follow "%s" link.',
+            '"{}" page is {}. Please follow "{}" link.',
             self._settings.page.target,
-            self._page.link,
             action,
+            self._page.link,
         )
 
     def __exit__(

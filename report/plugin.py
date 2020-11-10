@@ -1,13 +1,12 @@
 """Module contains confluence reporter plugin AP."""
-import logging
 import sys
 
 from _pytest.config import Config
 from _pytest.config.argparsing import OptionGroup, Parser
 
-from report import SETTINGS_PATH, easy_build
+from loguru import logger as _logger
 
-_logger: logging.Logger = logging.getLogger(__name__)
+from report import SETTINGS_PATH, easy_build
 
 
 def pytest_addoption(parser: Parser) -> None:

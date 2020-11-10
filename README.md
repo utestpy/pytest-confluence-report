@@ -25,6 +25,7 @@
 
 - python 3.6, 3.7, 3.8
 - [typer](https://typer.tiangolo.com/)
+- [loguru](https://loguru.readthedocs.io/en/stable/index.html)
 - [pytest](https://pypi.org/project/pytest/)
 
 ### Development

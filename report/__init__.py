@@ -1,5 +1,4 @@
 """Package stands for pytest plugin to upload results into Confluence page."""
-import logging
 from typing import Tuple
 
 from report.workflow.settings import ConfluenceSettings, Settings
@@ -31,9 +30,4 @@ __all__: Tuple[str, ...] = (
     'TestXml',
     'easy_build',
     'client_from_settings',
-)
-
-logging.basicConfig(
-    format='%(asctime)s %(levelname)s %(message)s',
-    level=logging.INFO,
 )

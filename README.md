@@ -124,16 +124,16 @@ You can reach out me at:
 
 ### Contributing
 
-I would highly appreciate any contribution and support. If you are interested to add your ideas into project please follow next simple steps:
+I would highly appreciate any contribution and support. If you are interested to add your ideas into project please do the following simple steps:
 
-1. Clone the repository
-2. Configure `git` for the first time after cloning with your `name` and `email`
-3. `pip install -r requirements.txt` to install all project dependencies
-4. `pip install -r requirements-dev.txt` to install all development project dependencies
-5. Create your feature branch (git checkout -b feature/fooBar)
-6. Commit your changes (git commit -am 'Add some fooBar')
-7. Push to the branch (git push origin feature/fooBar)
-8. Create a new Pull Request
+1. Clone the repository.
+2. Configure `git` for the first time after cloning with your `name` and `email`.
+3. `pip install -r requirements.txt` to install all project dependencies.
+4. `pip install -r requirements-dev.txt` to install all development project dependencies.
+5. Create your feature branch (git checkout -b feature/fooBar).
+6. Commit your changes (git commit -am 'Add some fooBar').
+7. Push to the branch (git push origin feature/fooBar).
+8. Create a new Pull Request.
 
 ### What's next
 

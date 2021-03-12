@@ -1,1 +1,1 @@
-"""Package contains a set of interfaces to test `report` application."""
+"""Package contains a set of interfaces to test `pytest confluence report` application."""

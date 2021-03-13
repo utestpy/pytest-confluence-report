@@ -15,8 +15,10 @@
 
 # Pytest confluence report
 
-> Pytest plugin to convert test results into confluence page report to proceed with tests analysis.
+> Pytest plugin to convert test results into confluence page report to proceed with tests analysis. 
 > 
+> It will combine unique fail assertion messages to failed testcases and convert those into confluence tables which is omitted in other plugins such as [pytest-html](https://github.com/pytest-dev/pytest-html).
+>
 > ⚠️  **Note:** the project is under construction.
 
 ## Tools

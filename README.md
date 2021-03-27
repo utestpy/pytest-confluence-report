@@ -77,7 +77,7 @@ pip install git+https://github.com/vyahello/pytest-confluence-report@0.0.2
 
 ```bash
 git clone git@github.com:vyahello/pytest-confluence-report.git
-python -m report --settings settings.yml --xml-path pytest.xml
+python -m report --settings-path settings.yml --xml-path pytest.xml
 ```
 
 **[⬆ back to top](#pytest-confluence-report)**

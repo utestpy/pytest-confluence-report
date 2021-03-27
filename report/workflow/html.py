@@ -8,7 +8,7 @@ from loguru import logger as _logger
 from report import TestXml
 
 
-def _date(format_string: str = '%B %d, %Y') -> str:
+def _today(format_string: str = '%B %d, %Y') -> str:
     """Returns current date."""
     return date.today().strftime(format_string)
 
@@ -25,11 +25,11 @@ class _HtmlPage:
     def __init__(self, xml: TestXml) -> None:
         self._xml: TestXml = xml
 
-    def build_date(self) -> str:
+    def date_paragraph(self) -> str:
         """Returns date."""
-        return f'<p>{self.STRONG_ELEMENT.format("Date")}: {_date()}</p>'
+        return f'<p>{self.STRONG_ELEMENT.format("Date")}: {_today()}</p>'
 
-    def build_status_table(self) -> str:
+    def status_table(self) -> str:
         """Returns test status HTML table."""
         header: str = ''.join(
             map(
@@ -51,7 +51,7 @@ class _HtmlPage:
             f'<tr>{amount}</tr>{self.TABLE_END_TAG}'
         )
 
-    def build_opened_bugs_table(self) -> str:
+    def opened_bugs_table(self) -> str:
         """Returns opened bugs table."""
         return (
             f'<h3>{self.STRONG_ELEMENT.format("Opened bugs:")}</h3>'
@@ -64,7 +64,7 @@ class _HtmlPage:
             f'<tr><td></td><td></td><td></td></tr>{self.TABLE_END_TAG}'
         )
 
-    def build_failures_table(self) -> str:
+    def failures_table(self) -> str:
         """Returns failures table."""
         return (
             f'<h3>{self.STRONG_ELEMENT.format("Failures:")}</h3>'
@@ -94,10 +94,10 @@ class ReportPage:
         """Returns report page instance."""
         if not self._content:
             _logger.info('Collecting statistics from "{}" file', self._xml.name)
-            self._content += self._page.build_date()
-            self._content += self._page.build_status_table()
-            self._content += self._page.build_opened_bugs_table()
-            self._content += self._page.build_failures_table()
+            self._content += self._page.date_paragraph()
+            self._content += self._page.status_table()
+            self._content += self._page.opened_bugs_table()
+            self._content += self._page.failures_table()
         return self
 
     @property

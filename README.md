@@ -10,6 +10,8 @@
 [![Checked with interrogate](https://img.shields.io/badge/interrogate-checked-yellowgreen)](https://interrogate.readthedocs.io/en/latest/)
 [![Checked with mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE.md)
+[![PyPI version shields.io](https://img.shields.io/pypi/v/pytest-confluence-report.svg)](https://pypi.org/project/pytest-confluence-report)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/pytest-confluence-report.svg)](https://pypi.org/project/pytest-confluence-report)
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
 [![Docs](https://img.shields.io/badge/docs-github-orange)](https://vyahello.github.io/pytest-confluence-report/)
 

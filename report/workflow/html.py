@@ -27,7 +27,7 @@ class _HtmlPage:
 
     def date_paragraph(self) -> str:
         """Returns date."""
-        return f'<p>{self.STRONG_ELEMENT.format("Date")}: {_today()}</p>'
+        return f'<p>{self.STRONG_ELEMENT.format("Report Date")}: {_today()}</p>'
 
     def status_table(self) -> str:
         """Returns test status HTML table."""

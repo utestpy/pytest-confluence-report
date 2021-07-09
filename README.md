@@ -87,6 +87,19 @@ python -m report --settings-path settings.yml --xml-path pytest.xml
 
 ## Development notes
 
+### Configuration
+
+In order to enable plugin automatically within your `pytest.ini` configuration file, please set an appropriate flag:
+```ini
+[pytest]
+addopts = --confluence-upload
+```
+or a shorten version:
+[pytest]
+```ini
+addopts = --cs
+```
+
 ### Testing
 
 Generally, `pytest` tool is used to organize testing procedure.

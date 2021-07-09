@@ -1,10 +1,7 @@
-attrs==20.2.0
-atlassian-python-api==1.17.5
 black==20.8b1
 check-manifest==0.44
 coverage==5.3
 coveralls==2.1.2
-enforce-pep8==0.0.11
 flake8==3.8.4
 flake8-annotations==2.4.1
 flake8-annotations-complexity==0.0.5
@@ -27,9 +24,5 @@ pytest==6.1.0
 pytest-clarity==0.3.0a0
 pytest-cov==2.10.1
 pytest-mock==3.3.1
-pytest-randomly==3.8.0
+pytest-randomly==3.0.0
 pytest-sugar==0.9.4
-typer==0.3.2
-uyaml==0.0.7
-junitparser==1.4.1
-lxml==4.5.2

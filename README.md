@@ -1,7 +1,7 @@
 ![Screenshot](media/logo.png)
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-[![Build Status](https://travis-ci.org/vyahello/pytest-confluence-report.svg?branch=master)](https://travis-ci.org/vyahello/pytest-confluence-report)
+[![Build Status](https://travis-ci.com/vyahello/pytest-confluence-report.svg?branch=master)](https://travis-ci.com/vyahello/pytest-confluence-report)
 [![Coverage Status](https://coveralls.io/repos/github/vyahello/pytest-confluence-report/badge.svg?branch=master)](https://coveralls.io/github/vyahello/pytest-confluence-report?branch=master)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Checked with pylint](https://img.shields.io/badge/pylint-checked-blue)](https://www.pylint.org)

@@ -95,9 +95,10 @@ In order to enable plugin automatically within your `pytest.ini` configuration f
 addopts = --confluence-upload
 ```
 or a shorten version:
-[pytest]
+
 ```ini
-addopts = --cs
+[pytest]
+addopts = --cu
 ```
 
 ### Testing

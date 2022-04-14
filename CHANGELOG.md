@@ -1,6 +1,20 @@
 Versions
 ========
 
+0.4.0
+=======
+_Release date: 14.04.2022_
+
+**Features**
+- Support python3.9
+- Add Continuous Integration via Github Actions
+
+**Changes**
+- Use 'space' instead of 'parent' name for Confluence pages 
+- Fix shorten version option usage in readme 
+- Document plugin usage in pytest config file
+- Update mypy package version
+
 0.0.3
 =======
 _Release date: 06.11.2020_

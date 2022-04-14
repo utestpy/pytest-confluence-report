@@ -50,7 +50,7 @@ def test_credentials_as_str(credentials: _Credentials) -> None:
 
 
 def test_page_parent(page: _Page) -> None:
-    assert page.parent == 'Home'
+    assert page.space == 'Home'
 
 
 def test_page_target(page: _Page) -> None:
@@ -58,7 +58,7 @@ def test_page_target(page: _Page) -> None:
 
 
 def test_page_from_dict() -> None:
-    assert _Page.from_dict({'parent': 'Home', 'target': 'Salary'})
+    assert _Page.from_dict({'space': 'Home', 'target': 'Salary'})
 
 
 def test_unified_settings_url(unified_settings: _UnifiedSettings) -> None:
@@ -77,7 +77,7 @@ def test_unified_settings_credentials(
 
 def test_unified_settings_content(unified_settings: _UnifiedSettings) -> None:
     assert unified_settings._UnifiedSettings__content('page') == {
-        'parent': 'Home',
+        'space': 'Home',
         'target': 'Salary',
     }
 

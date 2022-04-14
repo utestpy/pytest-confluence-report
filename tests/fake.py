@@ -4,7 +4,7 @@ from report.workflow.settings import Settings, _Credentials, _Page
 
 SECTION = {
     'url': '',
-    'page': {'parent': 'Home', 'target': 'Salary'},
+    'page': {'space': 'Home', 'target': 'Salary'},
     'credentials': {'username': 'Foo', 'api-key': 'Bar'},
 }
 CONFLUENCE_PART = {'confluence': SECTION}

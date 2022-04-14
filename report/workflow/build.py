@@ -1,5 +1,6 @@
 """Module provides a set of API to build report."""
 from uyaml import ContextYamlFromPath, Yaml
+
 from report import (
     ConfluenceContent,
     ConfluencePage,

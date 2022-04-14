@@ -28,7 +28,7 @@
 
 ### Production
 
-- python 3.6, 3.7, 3.8
+- python 3.6, 3.7, 3.8, 3.9
 - [typer](https://typer.tiangolo.com/)
 - [loguru](https://loguru.readthedocs.io/en/stable/index.html)
 - [pytest](https://pypi.org/project/pytest/)
@@ -36,7 +36,6 @@
 ### Development
 
 - [travis](https://travis-ci.org/)
-- [pytest](https://pypi.org/project/pytest/)
 - [black](https://black.readthedocs.io/en/stable/)
 - [mypy](http://mypy.readthedocs.io/en/latest)
 - [pylint](https://www.pylint.org/)

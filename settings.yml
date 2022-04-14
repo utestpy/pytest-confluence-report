@@ -12,7 +12,7 @@ confluence:
     api-key: ''
   # Confluence pages section
   page:
-    # Confluence parent page name e.g 'Home'
-    parent: ''
+    # Confluence space name e.g 'Home'
+    space: ''
     # Confluence target page name e.g 'Personal web site performance tests'
     target: ''

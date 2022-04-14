@@ -96,7 +96,7 @@ class ConfluencePage(Page):
         Returns: a link
         """
         link: str = self._client.get_page_by_title(
-            space=self._settings.page.parent, title=self._settings.page.target
+            space=self._settings.page.space, title=self._settings.page.target
         )['_links']['webui']
         return urljoin(self._settings.url, f'wiki{link}')
 
@@ -104,13 +104,13 @@ class ConfluencePage(Page):
     def id_(self) -> int:
         """Returns confluence page id."""
         return self._client.get_page_id(
-            space=self._settings.page.parent, title=self._settings.page.target
+            space=self._settings.page.space, title=self._settings.page.target
         )
 
     def build(self, content: str) -> None:
         """Creates confluence client page."""
         self._client.create_page(
-            space=self._settings.page.parent,
+            space=self._settings.page.space,
             title=self._settings.page.target,
             body=content,
         )
@@ -122,7 +122,7 @@ class ConfluencePage(Page):
     def exists(self) -> bool:
         """Check if page exists page."""
         return self._client.page_exists(
-            self._settings.page.parent, self._settings.page.target
+            self._settings.page.space, self._settings.page.target
         )
 
 

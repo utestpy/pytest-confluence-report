@@ -3,7 +3,6 @@ import sys
 
 from _pytest.config import Config
 from _pytest.config.argparsing import OptionGroup, Parser
-
 from loguru import logger as _logger
 
 from report import SETTINGS_PATH, easy_build

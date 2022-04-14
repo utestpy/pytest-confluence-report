@@ -59,16 +59,16 @@ class _Credentials(AbstractStyle):
 class _Page(AbstractStyle):
     """Represents an abstract interface for confluence page settings."""
 
-    __slots__: Sequence[str] = ('_parent', '_target')
+    __slots__: Sequence[str] = ('_space', '_target')
 
-    def __init__(self, parent: str, target: str) -> None:
-        self._parent = parent
+    def __init__(self, space: str, target: str) -> None:
+        self._space = space
         self._target = target
 
     @property
-    def parent(self) -> str:
-        """Returns parent confluence page."""
-        return self._parent
+    def space(self) -> str:
+        """Returns space of confluence page."""
+        return self._space
 
     @property
     def target(self) -> str:
@@ -81,9 +81,9 @@ class _Page(AbstractStyle):
 
         Example:
         >>> page = _Page.from_dict(
-        ...     {'parent': 'Home', 'target': 'Personal web site tests'}
+        ...     {'space': 'Home', 'target': 'Personal web site tests'}
         ... )
-        >>> page.parent
+        >>> page.space
         'Home'
         >>> page.target
         'Personal web site tests'
@@ -91,7 +91,7 @@ class _Page(AbstractStyle):
         :param settings: <dict> given settings
         :return: credentials object
         """
-        return cls(settings['parent'], settings['target'])
+        return cls(settings['space'], settings['target'])
 
     def __str__(self) -> str:
         """Return credentials as string representative.
@@ -100,7 +100,7 @@ class _Page(AbstractStyle):
         """
         return (
             f'[{self.__class__.__name__}: '
-            f'parent = {self._parent}, target = {self._target}]'
+            f'space = {self._space}, target = {self._target}]'
         )
 
 
